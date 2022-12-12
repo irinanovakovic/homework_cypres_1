@@ -22,5 +22,24 @@ describe('Register page - Negative cases', () => {
 
     cy.contains('The terms and conditions must be accepted.').should('be.visible') 
 
-  })
+  });
+   it("Short password", () => {
+    cy.visit('https://gallery-app.vivifyideas.com/register');
+    cy.get('#first-name').type(personOne.firstName)
+    cy.get('#last-name').type(personOne.lastName)
+    cy.get('#email').type(personOne.email)
+    cy.get('#password').type('123')
+    cy.get('#password-confirmation').type('123');
+   cy.get('[type="checkbox"]').check();
+    cy.get('.btn').click();
+
+    cy.contains('The password must be at least 8 characters.').should('be.visible')
+    
+
+
+
+   })
+
+  
 })
+
