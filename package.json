@@ -7,8 +7,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Iris",
-  "license": "ISC",
-  "dependencies": {
-    "cypress": "^12.0.2"
-  }
+  "license": "ISC"
 }
