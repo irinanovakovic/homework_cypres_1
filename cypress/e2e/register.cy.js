@@ -51,13 +51,13 @@ describe('Register page - Negative cases', () => {
 
   it("The password does not match", () => {
    
-    cy.get('#first-name').type(personOne.firstName)
-    cy.get('#last-name').type(personOne.lastName)
-    cy.get('#email').type(personOne.email)
-    cy.get('#password').type('12345678')
-    cy.get('#password-confirmation').type('12sdfsfsfs3');
-   cy.get('[type="checkbox"]').check();
-    cy.get('.btn').click();
+    cy.get(locators.register.firstName).type(faker.name.firstName())
+    cy.get(locators.register.lastName).type(faker.name.lastName())
+    cy.get(locators.register.email).type(faker.internet.email())
+    cy.get(locators.register.password).type('12345678')
+    cy.get(locators.register.confirmPassword).type('12sdfsfsfs3');
+   cy.get(locators.register.terms).check();
+    cy.get(locators.register.submitBtn).click();
 
     cy.contains('The password confirmation does not match.').should('be.visible')
   
