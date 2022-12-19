@@ -10,9 +10,9 @@ export const locators = {
     },
 
     login: {
-        email:'',
-        password: '',
-        submitBtn: '',
+        email:'#email',
+        password: '#password',
+        submitBtn: '.btn',
     },
 
     galleries: {
@@ -20,5 +20,16 @@ export const locators = {
         searchField: '',
         filterBtn: '',
     },
+    createGallery: {
+        createGalleryBtn: '.mr-auto > :nth-child(3) > .nav-link',
+        headline: '.title-style',
+        title: '#title',
+        description: '#description',
+        images: '[type="url"]',
+        addImage: '[type="button"]',
+        submit: '.btn.btn-custom',
+        cancel: '.btn.btn-custom',
+
+    }
 
 }
