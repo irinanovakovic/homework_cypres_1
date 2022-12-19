@@ -1,5 +1,13 @@
-describe('Register page - Negative cases', () => {
 
+import { locators } from '../locators';
+import { faker } from '@faker-js/faker';
+
+describe('Register page - Negative cases', () => {
+  beforeEach(() => {
+    cy.visit('/register');
+
+  })
+ 
 
   const personOne = {
     firstName: "irina",
@@ -11,27 +19,28 @@ describe('Register page - Negative cases', () => {
   }
 
   it('Checkout button is not confirmed', () => {
-    cy.visit('https://gallery-app.vivifyideas.com/register');
 
-    cy.get('#first-name').type(personOne.firstName)
-    cy.get('#last-name').type(personOne.lastName)
-    cy.get('#email').type(personOne.email)
-    cy.get('#password').type(personOne.password)
-    cy.get('#password-confirmation').type(personOne.confirmedPassword)
-    cy.get('.btn').click()
+    const password = faker.internet.password();
+   
+    cy.get(locators.register.firstName).type(faker.name.firstName())
+    cy.get(locators.register.lastName).type(faker.name.lastName())
+    cy.get(locators.register.email).type(faker.internet.email())
+    cy.get(locators.register.password).type(password)
+    cy.get(locators.register.confirmPassword).type(password)
+    cy.get(locators.register.submitBtn).click()
 
     cy.contains('The terms and conditions must be accepted.').should('be.visible') 
 
   });
    it("Short password", () => {
-    cy.visit('https://gallery-app.vivifyideas.com/register');
-    cy.get('#first-name').type(personOne.firstName)
-    cy.get('#last-name').type(personOne.lastName)
-    cy.get('#email').type(personOne.email)
-    cy.get('#password').type('123')
-    cy.get('#password-confirmation').type('123');
-   cy.get('[type="checkbox"]').check();
-    cy.get('.btn').click();
+   
+    cy.get(locators.register.firstName).type(faker.name.firstName())
+    cy.get(locators.register.lastName).type(faker.name.lastName())
+    cy.get(locators.register.email).type(faker.internet.email())
+    cy.get(locators.register.password).type('123')
+    cy.get(locators.register.confirmPassword).type('123');
+   cy.get(locators.register.terms).check();
+    cy.get(locators.register.submitBtn).click();
 
     cy.contains('The password must be at least 8 characters.').should('be.visible')
   
@@ -41,7 +50,7 @@ describe('Register page - Negative cases', () => {
 
 
   it("The password does not match", () => {
-    cy.visit('https://gallery-app.vivifyideas.com/register');
+   
     cy.get('#first-name').type(personOne.firstName)
     cy.get('#last-name').type(personOne.lastName)
     cy.get('#email').type(personOne.email)
